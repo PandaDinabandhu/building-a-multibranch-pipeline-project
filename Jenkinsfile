@@ -3,19 +3,21 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echlo "Hello world!"'
+                sh 'ecaho "Hello world!"'
             }
         }
     }
-    post {
-        failure {  
+    post{
+    failure {  
         	script {	
-        		if (BRANCH_NAME ==~ /(master)/ || ${env.JOB_NAME} == "multi") {
-        		mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "dinabandhu.panda@hach.com";  
-        	}
+        	if (env.JOB_NAME == "multi") {
+        		emailext bcc: '', body: "<h2><u>[Status: FAILED] AQI-Monorepo-Autobuild</u></h2><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of build: ${env.BUILD_URL} <br> Branch Name: ${env.BRANCH_NAME}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "[FAILED] -> ${env.JOB_NAME} | [Do-Not-Reply]", to: "dinabandhu.panda@hach.com";  
+        		} 
+        	else if (env.BRANCH_NAME == "development") {
+          		emailext bcc: '', body: "<h2><u>[Status: FAILED] AQI-Monorepo-Autobuild</u></h2><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of build: ${env.BUILD_URL} <br> Branch Name: ${env.BRANCH_NAME}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "[FAILED] -> ${env.JOB_NAME} | [Do-Not-Reply]", to: "dinabandhu.panda@hach.com";  
+       			 }
              
-         } 
-    } 
-    
-    }
+            } 
+        }
+    }    
 }
