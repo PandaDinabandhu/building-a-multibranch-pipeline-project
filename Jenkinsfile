@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                echo $(env.JOB_NAME)
+                echo "$(env.JOB_NAME)"
             }
         }
     }
