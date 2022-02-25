@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'eckho "Hello world!"'
+                sh 'ecasdasdho "Hello world!"'
                 echo "{$env.JOB_NAME}"
                 echo "{$env.BRANCH_NAME}"
             }
