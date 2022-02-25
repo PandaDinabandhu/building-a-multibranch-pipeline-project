@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 echo "{$env.JOB_NAME}"
-                echo "{$env.BRANCH_NAME}"
+                echro "{$env.BRANCH_NAME}"
             }
         }
     }
