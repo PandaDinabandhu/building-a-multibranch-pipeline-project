@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'ecaho "Hello world!"'
+                sh 'echo "Hello world!"'
                 echo $(env.JOB_NAME)
             }
         }
