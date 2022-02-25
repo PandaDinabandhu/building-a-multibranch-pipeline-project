@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello world!"'
+                sh 'eckho "Hello world!"'
                 echo "{$env.JOB_NAME}"
-                echro "{$env.BRANCH_NAME}"
+                echo "{$env.BRANCH_NAME}"
             }
         }
     }
